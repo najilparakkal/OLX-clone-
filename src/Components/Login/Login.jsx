@@ -16,6 +16,7 @@ function Login() {
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+    setEmailError(""); // Clearing email error when input value changes
     if (formSubmitted) {
       validateEmail(e.target.value);
     }
@@ -23,6 +24,7 @@ function Login() {
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    setPasswordError(""); // Clearing password error when input value changes
     if (formSubmitted) {
       validatePassword(e.target.value);
     }
@@ -121,7 +123,9 @@ function Login() {
           <br />
           <button>Login</button>
         </form>
-        <a>Signup</a>
+        <a className="signupbtn" onClick={()=>{
+          navigate("/Signup")
+        }}>Signup</a>
       </div>
     </div>
   );

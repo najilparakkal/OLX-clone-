@@ -170,7 +170,9 @@ export default function Signup() {
           <br />
           <button>Signup</button>
         </form>
-        <a>Login</a>
+        <a className="loginbtn" onClick={()=>{
+          navigate("/Login")
+        }}>Login</a>
       </div>
     </div>
   );

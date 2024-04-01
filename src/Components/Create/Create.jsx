@@ -63,7 +63,7 @@ const Create = () => {
             onChange={(e) => setName(e.target.value)}
           />
           <br />
-          {!name && formSubmitted && <div className="error">Name is required</div>}
+          {!name && formSubmitted && <div className="error" style={{color:"red"}}>Name is required</div>}
           <label htmlFor="fname">Category</label>
           <br />
           <input
@@ -75,7 +75,7 @@ const Create = () => {
             onChange={(e) => setCategory(e.target.value)}
           />
           <br />
-          {!category && formSubmitted && <div className="error">Category is required</div>}
+          {!category && formSubmitted && <div className="error" style={{color:"red"}}>Category is required</div>}
           <label htmlFor="fname">Price</label>
           <br />
           <input
@@ -87,11 +87,11 @@ const Create = () => {
             name="Price"
           />
           <br />
-          {!price && formSubmitted && <div className="error">Price is required</div>}
+          {!price && formSubmitted && <div className="error" style={{color:"red"}}>Price is required</div>}
           <br />
           <img alt="Posts" width="150px" height="150px" src={image ? URL.createObjectURL(image) : ''}></img>
           <br />
-          {!image && formSubmitted && <div className="error">Image is required</div>}
+          {!image && formSubmitted && <div className="error" style={{color:"red"}}>Image is required</div>}
           <br />
           <input onChange={(e) => setImage(e.target.files[0])} type="file" />
           <br />

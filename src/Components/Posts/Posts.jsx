@@ -41,13 +41,13 @@ function Posts() {
 
            return <div className="card" onClick={()=>{
             setPostDetails(product)
-            navigate("/Product")
+            navigate("/Product/"+product.id)
            }}>
               <div className="favorite">
                 <Heart></Heart>
               </div>
               <div className="image">
-                <img src={product.url} alt="" />
+                <img className="post" src={product.url} alt="" />
               </div>
               <div className="content">
                 <p className="rate">&#x20B9; {product.price}</p>
