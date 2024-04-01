@@ -30,38 +30,39 @@ function Login() {
 
   const validateEmail = (value) => {
     if (!value) {
-      setEmailError("Please enter the email");
+      return "Please enter the email";
     } else if (!isValidEmail(value)) {
-      setEmailError("Invalid email format");
+      return "Invalid email format";
     } else {
-      setEmailError(""); // Clear the error if the email is valid
+      return "";
     }
   };
-
+  
   const validatePassword = (value) => {
     if (!value) {
-      setPasswordError("Please enter the password");
+      return "Please enter the password";
     } else {
-      setPasswordError(""); // Clear the error if the password is entered
+      return ""; 
     }
   };
-
+  
   const isValidEmail = (value) => {
-    // Simple email validation regex
     const emailRegex = /\S+@\S+\.\S+/;
     return emailRegex.test(value);
   };
-
+  
   const handleLogin = async (e) => {
     e.preventDefault();
     setFormSubmitted(true);
   
-    // Validate inputs
-    validateEmail(email);
-    validatePassword(password);
+    const emailError = validateEmail(email);
+    const passwordError = validatePassword(password);
+  
+    setEmailError(emailError);
+    setPasswordError(passwordError);
   
     if (emailError || passwordError) {
-      return; // Don't proceed if there are validation errors
+      return;
     }
   
     try {
@@ -88,7 +89,7 @@ function Login() {
     }
   };
   
-
+  
   return (
     <div>
       <div className="loginParentDiv">
@@ -98,14 +99,13 @@ function Login() {
           <br />
           <input
             className="input"
-            type="email"
             id="fname"
             name="email"
             value={email}
             onChange={handleEmailChange}
           />
           <br />
-          {formSubmitted && emailError && <div className="error">{emailError}</div>}
+          {formSubmitted && <div className="error" style={{ color: 'red' }}>{emailError}</div>}
           <label htmlFor="lname">Password</label>
           <br />
           <input
@@ -117,7 +117,7 @@ function Login() {
             onChange={handlePasswordChange}
           />
           <br />
-          {formSubmitted && passwordError && <div className="error">{passwordError}</div>}
+          {formSubmitted && <div className="error" style={{ color: 'red' }}>{passwordError}</div>}
           <br />
           <button>Login</button>
         </form>
@@ -125,6 +125,7 @@ function Login() {
       </div>
     </div>
   );
+  
 }
 
 export default Login;

@@ -1,24 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
-
 import './View.css';
 import { PostContext } from '../../store/Post';
 import { firestore } from '../../firebase/config';
-import { doc , getDoc } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 
 function View() {
-  const [userDetails,setUserDetails] = useState(null)
-  console.log("oairwjg;wr",userDetails);
-  const {postDetails} = useContext(PostContext)
-  console.log('postDetail1',postDetails);
+  const [userDetails, setUserDetails] = useState(null);
+  const { postDetails } = useContext(PostContext);
 
   useEffect(() => {
     const userData = async () => {
       try {
-        if (postDetails && postDetails.user) { 
+        if (postDetails && postDetails.user) {
           const { user } = postDetails;
-          console.log('user',user);
-          const docRef = doc(firestore, 'users', user);
-          const snapshot =  getDoc(docRef);
+          const docRef =  doc(firestore, 'users', user);
+          const snapshot = await getDoc(docRef); 
           if (snapshot.exists()) {
             setUserDetails(snapshot.data());
           } else {
@@ -32,7 +28,7 @@ function View() {
 
     userData();
   }, [postDetails]);
-  
+
   return (
     <div className="viewParentDiv">
       <div className="imageShowDiv">
@@ -51,10 +47,10 @@ function View() {
         {userDetails && <div className="contactDetails">
           <p>Seller details</p>
           <p>{userDetails.username}</p>
-          <p>{userDetails.phoneNum}</p>
+          <p>{userDetails.phone}</p>
         </div>}
       </div>
     </div>
   );
-}
+  }
 export default View;
