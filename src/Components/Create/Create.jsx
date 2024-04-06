@@ -22,7 +22,8 @@ const Create = () => {
     if (!name || !category || !price || !image) {
       return;
     }
-
+  
+  
     const currentDate = Timestamp.now();
     const storage = getStorage(firebaseApp);
     const storageRef = ref(storage, `/images/${image.name}`);
@@ -46,6 +47,7 @@ const Create = () => {
         console.error('Error uploading image:', error);
       });
   };
+  
 
   return (
     <Fragment>

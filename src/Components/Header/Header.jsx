@@ -41,7 +41,14 @@ function Header() {
           <Arrow></Arrow>
         </div>
         <div className="loginPage">
-          <span style={{color:"blue"}}>{user ? `Hi ${user.displayName}` : "Login"}</span>
+          <span
+            style={{ color: "blue" }}
+            onClick={() => {
+              navigate("/Login");
+            }}
+          >
+            {user ? `Hi ${user.displayName}` : "Login"}
+          </span>
           <hr />
         </div>
         {user && (
